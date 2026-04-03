@@ -1,23 +1,23 @@
-const mysql2 = require('mysql2');
-require('dotenv').config();
+const mysql2 = require('mysql2')
+require('dotenv').config()
 
 const db = mysql2.createConnection({
     host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT, // <--- Indispensable pour Aiven (26451)
     ssl: {
-        rejectUnauthorized: false // <--- Obligatoire pour accepter le certificat d'Aiven
+        rejectUnauthorized: false
     }
-});
+})
 
 db.connect((err) => {
     if (err) {
-        console.error('Erreur connexion MySQL (Vérifie ton port et ton SSL) :', err.message);
-        return;
+        console.error('Erreur connexion MySQL :', err)
+        return
     }
-    console.log('MySQL Aiven connecté ✅');
-});
+    console.log('MySQL connecté ✅')
+})
 
-module.exports = db.promise();
+module.exports = db
