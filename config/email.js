@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 })
 
 const envoyerEmailVerification = async (email, nom, token) => {
-    const lien = `http://localhost:3000/api/auth/verifier-email?token=${token}`
+    const lien = `https://agroconnect-backend-djtm.onrender.com/api/auth/verifier-email?token=${token}`
 
     await transporter.sendMail({
         from: `"AgroConnect Bénin 🌱" <${process.env.EMAIL_USER}>`,
